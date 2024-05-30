@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+
+    int i = 0, j, igual, numero[6];
+
+    srand(time(0));
+
+    do{ 
+        numero[i] = rand() % 99; 
+        igual = 0;
+        for(j = 0; j < i; j++){ 
+            if(numero[j] == numero[i])
+                igual = 1; 
+        }
+
+        if(igual == 0) 
+            i++;
+    }while(i < 6); 
+    printf("\nNúmeros sorteados: \n");
+    for(i = 0; i < 6; i++){
+        printf("%d ", numero[i]);
+    }
+
+    // Ordem crescente.
+    for (i = 1; i < 6; i++) {
+        int key = numero[i];
+        j = i - 1;
+        while (j >= 0 && numero[j] > key) {
+            numero[j + 1] = numero[j];
+            j = j - 1;
+        }
+        numero[j + 1] = key;
+    }
+
+    printf("\nNúmeros ordenados: \n");
+    for (i = 0; i < 6; i++) {
+        printf("%d ", numero[i]);
+    }
+
+    printf("\nFim do Sorteio.");
+
+    return 0;
+}
